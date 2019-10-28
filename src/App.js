@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter,Switch,Route} from 'react-router-dom'
+import Navbar from './Components/Layout/Navbar'
+import SignIn from './Components/Authorisation/SignIn';
+import SignUp from './Components/Authorisation/SignUp';
+import PropertyView from './Components/Dashboard/PropertyView'
+import PropertyDetails from './Components/Properties/PropertyDetails'
+import search from './Components/search/search'
 
 function App() {
-  return (
+  
+  return(
+    <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+      <Navbar/>
+    
+      <Switch>
+        <Route exact path='/' component={PropertyView}/>
+        <Route path='/property/:id' component={PropertyDetails}/>
+        <Route  path='/login' component={SignIn}/>
+        <Route  path='/registration' component={SignUp}/>
+      </Switch>
     </div>
+    </BrowserRouter>
+    
   );
 }
 
